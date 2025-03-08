@@ -1,0 +1,34 @@
+{
+  "name": "node-ts-template",
+  "version": "1.0.0",
+  "description": "a nodejs typescript template contains code styling and the best practices when it comes to a project for team",
+  "main": "app.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf ./build && tsc",
+    "start": "yarn run build && node ./build/app.js",
+    "start-dev": "npx nodemon",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier . --write",
+    "prepare": "husky",
+    "check-types": "tsc --pretty --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/node": "^22.13.8",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "nodemon": "^3.1.9",
+    "prettier": "3.5.2",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.25.0"
+  }
+}
