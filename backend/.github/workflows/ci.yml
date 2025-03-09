@@ -7,9 +7,45 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v4
 
+      - name: 🏗️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 23
+          cache: 'yarn'
+
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: 🎨 Lint Code
+        run: yarn lint:fix
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 23
+          cache: 'yarn'
+
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: 🎨 Format Code
+        run: yarn run format
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [lint, format]
     steps:
       - name: 🛎️ Checkout Repository
         uses: actions/checkout@v4
@@ -26,22 +62,31 @@ jobs:
       - name: 🔍 Check Types
         run: yarn check-types
 
-      - name: 🎨 Lint Code
-        run: yarn lint:fix
-    
-      - name: 🎨 format Code
-        run: yarn run format
-
       - name: 🧪 Run Tests
         run: yarn test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 23
+          cache: 'yarn'
+
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile
 
       - name: 🛠️ Build Project
         run: yarn build
 
   docker:
-    needs: build
+    needs: [build]
     runs-on: ubuntu-latest
-
     steps:
       - name: 🛎️ Checkout Repository
         uses: actions/checkout@v4
