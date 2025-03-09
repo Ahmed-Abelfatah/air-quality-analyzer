@@ -1,0 +1,109 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'backend/**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+          cache-dependency-path: backend/yarn.lock
+
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: 🎨 Lint Code
+        run: yarn lint:fix
+
+  format:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+          cache-dependency-path: backend/yarn.lock
+
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: 🎨 Format Code
+        run: yarn format
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [lint, format]
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+          cache-dependency-path: backend/yarn.lock
+
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: 🔍 Check Types
+        run: yarn check-types
+
+      - name: 🧪 Run Tests
+        run: yarn test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [test]
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: 🛎️ Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🏗️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+          cache-dependency-path: backend/yarn.lock
+
+      - name: 📦 Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: 🛠️ Build Project
+        run: yarn build
