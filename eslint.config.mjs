@@ -15,8 +15,6 @@ export default [
   {
     plugins: { prettier: pluginPrettier },
     rules: {
-      "no-unused-vars": "warn",
-      "no-undef": "warn",
       "no-console": 1,
       "prettier/prettier": "error",
     },

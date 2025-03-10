@@ -14,7 +14,8 @@
     "prepare": "husky",
     "check-types": "tsc --pretty --noEmit",
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "seed": "ts-node --project tsconfig.json --require tsconfig-paths/register src/scripts/seed.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -30,6 +31,7 @@
     "prettier": "3.5.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.25.0"
   },
@@ -37,6 +39,7 @@
     "@types/jest": "^29.5.14",
     "chalk": "^5.4.1",
     "csv-parse": "^5.6.0",
+    "dotenv": "^16.4.7",
     "jest": "^29.7.0",
     "mongoose": "^8.12.1",
     "ts-jest": "^29.2.6"
