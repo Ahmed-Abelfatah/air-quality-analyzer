@@ -1,4 +1,4 @@
-import { log } from "@/utils/logger";
+import { log } from "../utils/logger";
 import chalk from "chalk";
 import mongoose from "mongoose";
 
@@ -9,7 +9,6 @@ export const connectToMongoDB = async () => {
 
   try {
     await mongoose.connect(uri);
-
     log(chalk.bgBlack.green("✅ Connected to MongoDB"));
   } catch (error: unknown) {
     log(chalk.bgBlack.red("❌ MongoDB connection error", error));

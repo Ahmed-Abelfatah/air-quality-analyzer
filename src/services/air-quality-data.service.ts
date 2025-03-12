@@ -1,5 +1,5 @@
-import AirQualityRepositoy from "@/interfaces/air-quality-repository.interface";
-import { AirQuality } from "@/models/air-quality.model";
+import AirQualityRepositoy from "../interfaces/air-quality-repository.interface";
+import { AirQuality } from "../models/air-quality.model";
 
 export default class AirQualityDataService {
   constructor(private repository: AirQualityRepositoy) {}
@@ -10,5 +10,16 @@ export default class AirQualityDataService {
 
   deleteAll() {
     return this.repository.deleteAll();
+  }
+
+  getDataByDateRange(start: Date, end: Date) {
+    return this.repository.getDataByDateRange(start, end);
+  }
+
+  getTimeSeriesData(
+    parameter: keyof AirQuality,
+    limit: number,
+  ): Promise<Partial<AirQuality>[]> {
+    return this.repository.getTimeSeriesData(parameter, limit);
   }
 }
