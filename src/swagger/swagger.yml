@@ -16,7 +16,16 @@ paths:
           required: true
           schema:
             type: string
-            enum: [coGt, c6h6Gt, noxGt, no2Gt, temperature, relativeHumidity, absoluteHumidity]
+            enum:
+              [
+                coGt,
+                c6h6Gt,
+                noxGt,
+                no2Gt,
+                temperature,
+                relativeHumidity,
+                absoluteHumidity,
+              ]
         - in: query
           name: limit
           required: false
@@ -24,9 +33,9 @@ paths:
             type: integer
             default: 100
       responses:
-        '200':
+        "200":
           description: Success
-        '400':
+        "400":
           description: Invalid input
 
   /api/air-quality/range:
@@ -46,7 +55,7 @@ paths:
             type: string
             format: date
       responses:
-        '200':
+        "200":
           description: Success
-        '400':
+        "400":
           description: Invalid date format
