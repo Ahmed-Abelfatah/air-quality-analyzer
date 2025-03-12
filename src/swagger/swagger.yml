@@ -4,6 +4,7 @@ info:
   version: 1.0.0
   description: API docs for Air Quality endpoints
 servers:
+  - url: https://air-quality-analyzer-80wm.onrender.com
   - url: http://localhost:3003
 
 paths:
