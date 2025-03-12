@@ -4,10 +4,12 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn run install --only-production
+RUN yarn install --frozen-lockfile
 
-RUN yarn run build
+COPY . .
 
-EXPOSE 3000
+RUN yarn build && cp ./src/swagger/swagger.yml ./build/swagger/swagger.yml
 
-CMD [ "yarn","start" ]
+EXPOSE 3003
+
+CMD ["yarn", "start"]
