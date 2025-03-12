@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
 import path from "path";
-import { connectToMongoDB } from "@/database/mongoose";
-import CsvParserService from "@/services/csv-parser.service";
-import AirQualityDataService from "@/services/air-quality-data.service";
-import AirQualityMongoDataService from "@/services/air-quality-mongo-data.service";
+import { connectToMongoDB } from "../database/mongoose";
+import CsvParserService from "../services/csv-parser.service";
+import AirQualityDataService from "../services/air-quality-data.service";
+import AirQualityMongoDataService from "../services/air-quality-mongo-data.service";
 import chalk from "chalk";
-import { log } from "@/utils/logger";
+import { log } from "../utils/logger";
 
 dotenv.config();
 const repository = new AirQualityMongoDataService();

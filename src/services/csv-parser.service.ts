@@ -1,10 +1,10 @@
 import { parse as CsvParse } from "csv-parse";
 import chalk from "chalk";
 import fs from "fs";
-import DataParser from "@/interfaces/data-parser.interface";
-import { log } from "@/utils/logger";
-import AirQualityRepositoy from "@/interfaces/air-quality-repository.interface";
-import { AirQuality } from "@/models/air-quality.model";
+import DataParser from "../interfaces/data-parser.interface";
+import { log } from "../utils/logger";
+import AirQualityRepositoy from "../interfaces/air-quality-repository.interface";
+import { AirQuality } from "../models/air-quality.model";
 
 export default class CsvProcessor
   implements DataParser<Record<string, unknown>>

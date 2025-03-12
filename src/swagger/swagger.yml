@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  title: Air Quality API
+  version: 1.0.0
+  description: API docs for Air Quality endpoints
+servers:
+  - url: http://localhost:3003
+
+paths:
+  /api/air-quality/timeseries/{parameter}:
+    get:
+      summary: Get time series data for a specific parameter
+      parameters:
+        - in: path
+          name: parameter
+          required: true
+          schema:
+            type: string
+            enum:
+              [
+                coGt,
+                c6h6Gt,
+                noxGt,
+                no2Gt,
+                temperature,
+                relativeHumidity,
+                absoluteHumidity,
+              ]
+        - in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+            default: 100
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Invalid input
+
+  /api/air-quality/range:
+    get:
+      summary: Get data by date range
+      parameters:
+        - in: query
+          name: start
+          required: true
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: end
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Invalid date format

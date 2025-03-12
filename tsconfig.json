@@ -10,11 +10,8 @@
     "noImplicitAny": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "baseUrl": "src",
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "baseUrl": "src"
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
   "exclude": ["node_modules", "build"]
 }
