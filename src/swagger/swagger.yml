@@ -26,6 +26,12 @@ paths:
                 temperature,
                 relativeHumidity,
                 absoluteHumidity,
+                pt08S1Co,
+                nmhcGt,
+                pt08S2Nmhc,
+                pt08S3Nox,
+                pt08S4No2,
+                pt08S5O3,
               ]
         - in: query
           name: limit
@@ -38,6 +44,8 @@ paths:
           description: Success
         "400":
           description: Invalid input
+        "500":
+          description: Internal server error
 
   /api/air-quality/range:
     get:
@@ -60,3 +68,57 @@ paths:
           description: Success
         "400":
           description: Invalid date format
+        "500":
+          description: Internal server error
+
+  /api/air-quality/filter/{parameter}:
+    get:
+      summary: Get time series data for a specific parameter
+      parameters:
+        - in: path
+          name: parameter
+          required: true
+          schema:
+            type: string
+            enum:
+              [
+                coGt,
+                c6h6Gt,
+                noxGt,
+                no2Gt,
+                temperature,
+                relativeHumidity,
+                absoluteHumidity,
+                pt08S1Co,
+                nmhcGt,
+                pt08S2Nmhc,
+                pt08S3Nox,
+                pt08S4No2,
+                pt08S5O3,
+              ]
+        - in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+            default: 100
+        - in: query
+          name: start
+          required: true
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: end
+          required: true
+          schema:
+            type: string
+            format: date
+
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Invalid input
+        "500":
+          description: Internal server error
