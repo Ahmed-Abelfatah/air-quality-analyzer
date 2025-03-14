@@ -30,4 +30,21 @@ export default class AirQualityMongoDataService implements AirQualityRepositoy {
       .sort({ date: 1, time: 1 })
       .lean();
   }
+
+  async getDataByParameterAndDateRange(
+    param: keyof AirQuality,
+    start: Date,
+    end: Date,
+    limit: number,
+  ): Promise<Partial<AirQuality>[]> {
+    return AirQualityModel.find(
+      {
+        date: { $gte: start, $lte: end },
+      },
+      { _id: 0, date: 1, time: 1, [param]: 1 },
+    )
+      .sort({ date: 1, time: 1 })
+      .limit(limit)
+      .lean();
+  }
 }
