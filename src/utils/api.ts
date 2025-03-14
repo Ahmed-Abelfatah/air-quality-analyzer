@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Response } from "express";
 import { ZodError } from "zod";
 
@@ -12,7 +13,7 @@ export const sendErrorResponse = ({
   error,
 }: {
   res: Response;
-  error: unknown;
+  error: any;
 }) => {
   if (error instanceof ZodError) {
     return res
@@ -22,7 +23,7 @@ export const sendErrorResponse = ({
   // TODO: implement datadog/sentry integration to log this kind of errors
   return res.status(HttpStatusCode.InternalServerError).json({
     success: false,
-    error: [`An unexpected error occurred: ${error}`],
+    error: [`An unexpected error occurred: ${error || error?.message}`],
   });
 };
 
