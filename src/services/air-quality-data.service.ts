@@ -22,4 +22,18 @@ export default class AirQualityDataService {
   ): Promise<Partial<AirQuality>[]> {
     return this.repository.getTimeSeriesData(parameter, limit);
   }
+
+  getDataByParameterAndDateRange(
+    parameter: keyof AirQuality,
+    startDate: Date,
+    endDate: Date,
+    limit: number,
+  ): Promise<Partial<AirQuality>[]> {
+    return this.repository.getDataByParameterAndDateRange(
+      parameter,
+      startDate,
+      endDate,
+      limit,
+    );
+  }
 }
