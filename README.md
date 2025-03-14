@@ -13,7 +13,7 @@ To improve performance and prevent misuse that could lead to slow responses or p
   While pagination could be applied, we opted not to implement it for now to keep the UI integration simple.
 
 ## Important links
-
+- :rocket: :rocket: [Demo](https://www.youtube.com/watch?v=d2ZAX7ml_Hw) :point_left: :point_left:
 - :rocket: :rocket: [Deployment link](https://air-quality-analyzer-80wm.onrender.com/docs/) :point_left: :point_left:
 
 ## Tech-Stack
