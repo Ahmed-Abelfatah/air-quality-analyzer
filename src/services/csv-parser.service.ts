@@ -67,7 +67,10 @@ export default class CsvProcessor
               `✅ Total parsed records: ${count} record${count !== 1 ? "s" : ""} 📄`,
             ),
           );
-          resolve({});
+          resolve({
+            success: true,
+            message: "Data has been processed successfully",
+          });
         })
         .on("error", (err) => {
           //TODO: integrate with sentry or dataDog
