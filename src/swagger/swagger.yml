@@ -8,7 +8,7 @@ servers:
   - url: http://localhost:3003
 
 paths:
-  /api/air-quality/timeseries/{parameter}:
+  /v1/api/air-quality/timeseries/{parameter}:
     get:
       summary: Get time series data for a specific parameter
       parameters:
@@ -47,7 +47,7 @@ paths:
         "500":
           description: Internal server error
 
-  /api/air-quality/range:
+  /v1/api/air-quality/range:
     get:
       summary: Get data by date range
       parameters:
@@ -71,7 +71,7 @@ paths:
         "500":
           description: Internal server error
 
-  /api/air-quality/filter/{parameter}:
+  /v1/api/air-quality/filter/{parameter}:
     get:
       summary: Get time series data for a specific parameter
       parameters:

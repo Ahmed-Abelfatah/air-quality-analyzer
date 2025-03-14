@@ -15,7 +15,7 @@
     "check-types": "tsc --pretty --noEmit",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "seed": "ts-node --project tsconfig.json --require tsconfig-paths/register src/scripts/seed.ts"
+    "seed": "ts-node src/scripts/seed.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

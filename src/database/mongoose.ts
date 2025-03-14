@@ -3,7 +3,7 @@ import chalk from "chalk";
 import mongoose from "mongoose";
 
 export const connectToMongoDB = async () => {
-  const uri = process.env.MONGODB_URI;
+  const uri = process.env.MONGODB_URI || "mongodb://mongo:27017/air-quality";
   if (!uri)
     throw new Error("MONGODB_URI is not defined in environment variables");
 
